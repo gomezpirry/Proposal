@@ -1,0 +1,31 @@
+\documentclass[oneside,openright,titlepage,numbers=noenddot,headinclude,
+                footinclude=true,cleardoublepage=empty,
+                BCOR=5mm,paper=a4,fontsize=11pt,spanish]{scrbook} 
+
+\input{classicthesis-config}
+
+\cfoot{\pagemark}
+
+\begin{document}
+
+\frenchspacing % Reduces space after periods to make text more compact
+\raggedbottom % Makes all pages the height of the text on that page
+
+\pagenumbering{roman} 
+\pagestyle{plain}
+
+\pagenumbering{arabic} 
+
+
+\include{Chapters/Titlepage}
+
+\clearpage\pagestyle{scrheadings}
+\clearpage\include{Chapters/Contents}
+\clearpage\include{Chapters/Introduction}
+\clearpage\include{Chapters/TheoricalBackground}
+\clearpage\include{Chapters/RelatedWork}
+\clearpage\include{Chapters/Methodology}
+
+\clearpage\include{Chapters/Bibliography}
+
+\end{document}
