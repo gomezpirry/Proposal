@@ -1,6 +1,6 @@
 \documentclass[oneside,openright,titlepage,numbers=noenddot,headinclude,
                 footinclude=true,cleardoublepage=empty,
-                BCOR=5mm,paper=a4,fontsize=11pt,spanish]{scrbook} 
+                BCOR=5mm,paper=a4,fontsize=11pt]{scrbook} 
 
 \input{classicthesis-config}
 
@@ -14,13 +14,14 @@
 \pagenumbering{roman} 
 \pagestyle{plain}
 
-\pagenumbering{arabic} 
+
 
 
 \include{Chapters/Titlepage}
 
 \clearpage\pagestyle{scrheadings}
 \clearpage\include{Chapters/Contents}
+\pagenumbering{arabic} 
 \clearpage\include{Chapters/Introduction}
 \clearpage\include{Chapters/TheoricalBackground}
 \clearpage\include{Chapters/RelatedWork}
