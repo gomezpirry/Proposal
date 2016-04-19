@@ -15,8 +15,8 @@ Figure \ref{cloud_services} show the stack estructure for cloud services.
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/cloud_services}
-\caption[Cloud computing service models]{Cloud computing service models 
-\textbf{Source:} \url{http://www.ibm.com/developerworks/websphere/techjournal/1206_dejesus/1206_dejesus.html}}
+\caption[Cloud computing service models]{Cloud computing service models \\
+\scriptsize{\textbf{Source:} \url{http://www.ibm.com/developerworks/websphere/techjournal/1206_dejesus/1206_dejesus.html}}}
 \label{cloud_services}
 \end{figure}
 
@@ -35,9 +35,9 @@ The Network Function Virtualisation(NFV) involves the implementation of network 
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/nfv_framework}
-\caption[Network Function Virtualisation Framework]{Network Function Virtualisation Framework
-\textbf{Source:} Software-Defined Network Function
-Virtualisation: A Survey - Figure 1}
+\caption[Network Function Virtualisation Framework]{Network Function Virtualisation Framework \\
+\scriptsize{\textbf{Source:} Software-Defined Network Function
+Virtualisation: A Survey - Figure 1}}
 \label{nfv_framework}
 \end{figure}
 
@@ -50,8 +50,8 @@ Software-defined Networking (SDN) is a paradigm where a central software program
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/sdn_architecture}
-\caption[Software-define Networking]{Software-define Networking
-\textbf{Source:} \url{https://www.sdxcentral.com/resources/sdn/inside-sdn-architecture/}}
+\caption[Software-define Networking]{Software-define Networking \\
+\scriptsize{\textbf{Source:} \url{https://www.sdxcentral.com/resources/sdn/inside-sdn-architecture/}}}
 \label{sdn}
 \end{figure}
 
@@ -62,14 +62,41 @@ is linked to the cloud. The figure \ref{fog} shows the fog computing architectur
 \begin{figure}[!h]
 \centering
 \includegraphics[width=0.5\textwidth]{images/fog}
-\caption[Fog Computing Paradigm]{Fog Computing Paradigm
-\textbf{Source:} The Fog Computing Paradigm Scenarios and Security Issues - Figure 1}
+\caption[Fog Computing Paradigm]{Fog Computing Paradigm \\
+\scriptsize{\textbf{Source:} The Fog Computing Paradigm Scenarios and Security Issues - Figure 1}}
 \label{fog}
 \end{figure}
 
 Fog computing includes the same services offered by cloud computing but closer to the end user and so provides low latency, location awareness, and improves quality-of-services (QoS) for streaming and real time applications like video streaming.
 
 \section{Video Coding}
+A problem of uncompressed video (RAW) files have been storage and transmission due to large number of bits containing, for this reason is required the use of compression techniques for reduce the bits number to represent a video. Video coding take advantage of elimination of three types of redundancy \cite{motion}:
+\begin{itemize}
+	\item Statistical redundancy: refers to the spatial correlation between neighbour pixels in a frame and temporal correlation between co-localisated pixel in consecutive frames.
+	\item Psychovisual redundancy: is due to limitations and characteristics of human system visual that not distinguish certain information.
+	\item Coding redundancy: is produced by the repetition of symbols representing video information.
+\end{itemize}
+	
+The figure \ref{codec} depicts a blocks diagram of a standard \emph{video codec}. Generally, a video codec have  two main modules, the encoder and decoder. They uses techniques and tools exploit the redundancies aforementioned. 
+
+\begin{figure}[!h]
+\centering
+\includegraphics[width=0.6\textwidth]{images/codec}
+\caption[Block Diagram of Video Codec]{Block Diagram of Video Codec \\
+\scriptsize{\textbf{Source:} \url{http://www.eetimes.com/document.asp?doc_id=1272639}}}
+\label{codec}
+\end{figure}
+
+Video encoder consist of three elements:
+\begin{itemize}
+	\item The predictor consists of intra-frame prediction for exploiting the spatial correlation. Also it consists of motion estimation and motion compensation for exploiting the temporal correlation. 
+	\item The quantizer reduces the accuracy of the representations of the predictor by a fidelity criterion to eliminate the psychovisual redundancy.
+	\item The entropy coding reduces the numbers of symbols necessary for representing the video.
+\end{itemize}
+
+Video decoder performs the inverse process of each elements to reconstruct the encoded information.
+
+
 
 
 
