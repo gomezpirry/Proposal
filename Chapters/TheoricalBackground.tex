@@ -94,7 +94,91 @@ Video encoder consist of three elements:
 	\item The entropy coding reduces the numbers of symbols necessary for representing the video.
 \end{itemize}
 
-Video decoder performs the inverse process of each elements to reconstruct the encoded information.
+Video decoder performs the inverse process of each elements to reconstruct the encoded information. In reconstruction process is presented information losses due to elimination or transformation of original information in the encoder.
+
+\section{Compressive Sensing}
+
+Lossy compression are used two assumptions: first is related to imperfection of human perception(sense) and the second related to the specific properties of signals in a certain transform domain. The aim of compressive sensing is to reconstruct a signal using a small set of signal samples \cite{compressive}. One of the main requirements that should be satisfied in order to efficiently apply the compressive sensing is the \emph{Sparsity}.
+
+\subsection{Sparsity}
+
+Consider a vector or signal $\boldsymbol{x} \in \mathbb{R}^N$ space. Given an orthonormal basis matrix (dictionary) $\boldsymbol{B} \in \mathbb{R}^{N \times N}$ whose columns are the basis elements $ \{\boldsymbol{b}_i\}_{i=1}^N$, $\boldsymbol{x}$ can be represented in terms of this basis as:
+\begin{center}
+\begin{equation}
+\boldsymbol{x}=\sum \limits_{i=1}^{N} \alpha_i \boldsymbol{b}_i
+\end{equation}
+\end{center}
+where $\boldsymbol{\alpha}$ is a vector of coefficients \cite{sparsity} and $\boldsymbol{b}_i$ are called \emph{atoms of a dictionary}. These coefficients are given by $\alpha_i = \boldsymbol{x} \boldsymbol{b}_i^T$. If the number of non-zero coefficients in $\boldsymbol{x}$ is $K\ll N$, the basis $\boldsymbol{b}$ provides a K-sparse representation of $\boldsymbol{x}$. Sparsity of vector $\boldsymbol{\alpha}$ is related
+to $||\alpha||_0 = K$ where $||.||_p$ indicates the $\ell_p$-norm define as
+\begin{equation}
+||\boldsymbol{\alpha}||_p = \left(\sum\limits_{i=1}^{n} |\alpha_i|^p \right)^\frac{1}{p}
+\end{equation}
+and $||\alpha$ is the $\ell_0$-norm, which means the number of the non-zero elements of vector, and is defined  as
+\begin{equation}
+||\boldsymbol{\alpha}||_0 = \lim_{p \to 0} ||\alpha||_p^p=\lim_{p \to 0} \sum_i |\alpha_i|^p
+\end{equation} 
+
+Typically, real-world signals are not exactly sparse in any orthogonal basis. Instead, they are \emph{compressible}. A signal is compressible if its coefficient magnitudes, sorted in decreasing order, present a power law decay
+\begin{equation}
+|\alpha|_{(n)} \leq C n^{-s}\;,\quad s=1,2 \ldots
+\end{equation}
+
+where $|\alpha|_{(n)}$ is the nth largest entry of $\alpha$ and $C$ is a constant. Because the coefficients magnitudes decay so rapidly, a small number of vectors $K \ll N$ from $\boldsymbol{B}$ can provide accurate
+approximations to $\boldsymbol{x}$. The error between original signal and its approximation is given by
+\begin{equation}
+||\boldsymbol{x}_L - \boldsymbol{x}||_2 \leq CL^{-(s-\frac{1}{2})}
+\end{equation}
+where $L$ is the $L$-term linear combination of elements that best approximate $\boldsymbol{x}$.  
+
+\subsection{Incoherence Sampling}
+
+A set of random measurements are selected from the signal $\boldsymbol{x}$ is used to construct $M \times N$ matrix $\boldsymbol{\phi}$ such as
+\begin{equation}
+\boldsymbol{y} = \boldsymbol{\phi x}
+\end{equation}
+where $\boldsymbol{y}$ is a $M\times 1$ vector of the compressive measurements. For reconstruct $\boldsymbol{x}$ from $\boldsymbol{y}$, $\boldsymbol{x}$ should be sparse in the transform domain (defined by the orthogonal basis matrix $\boldsymbol{B}$), such as
+\begin{equation}
+\boldsymbol{y}=\boldsymbol{\phi B \alpha}= \boldsymbol{D\alpha}
+\end{equation}
+Incoherence is related to the property that signals having sparse representation in the transform domain $\psi$ should be dense in the domain where the acquisition is performed \cite{compressive}. The coherence between sensing basis $\boldsymbol{\phi}$ and the representation basis $\boldsymbol{\psi}$ is given by
+\begin{equation}
+\mu(\boldsymbol{phi},\boldsymbol{B})= \sqrt{N} \max_{1 \leq j, j \leq N} | \boldsymbol{\varphi}_i,\boldsymbol{b}_j|, \quad 1\leq \mu(\boldsymbol{phi},\boldsymbol{B}) \sqrt{N}
+\end{equation}
+If the coherence is low, a number of random measurements to reconstruct the signal is small because each row of $\boldsymbol{phi}$ is spread out in the $\boldsymbol{B}$ domain.
+
+\subsection{Restricted Isometric Property (RIP)}
+
+This property helps to determine if matrix $\boldsymbol{D}$ is good for compressed sensing. A matrix $boldsymbol{D}$ satisfy the RIP if for each $K = 1,2, \ldots,$ the isometric constant $\delta_K$ of the matrix $\boldsymbol{D}$ is the smallest number such as
+\begin{equation}
+(1-\delta_K)||\boldsymbol{x}||_2^2 \leq ||\boldsymbol{Dx}||^2_2 \leq (1+\delta_K)||\boldsymbol{x}||^2_2
+\end{equation}
+holds for all K-sparse vectors $\boldsymbol{x}$. This property is equivalent to said that all subsets of $K$ columns taken from $\boldsymbol{D}$ are nearly orthogonal and K-sparse vectors cannot be in the null space
+of $\boldsymbol{D}$.
+
+\subsection{Numerical Optimisations}
+
+$M \times N$ matrix represents a undetermined system of equations that can be have infinite solutions. The method to solve this system is to find the minimum-norm solution for the optimisation problem 
+\begin{equation}
+\min||\boldsymbol{\alpha^\prime}||_0 \quad \textrm{subject to} \; \boldsymbol{x} = \boldsymbol{D \alpha^\prime}
+\end{equation}
+Although this problem recover directly the K sparse signal, it is a NP-Hard problem because require a exhaustive combinatorial search. Instead, is used the $\ell_1$ and $\ell_2$-norm to approximate the sparse solution. The $\ell_1$-norm minimisation problem is given by
+\begin{equation}
+\min||\boldsymbol{\alpha^\prime}||_1 \quad \textrm{subject to}; \boldsymbol{x} = \boldsymbol{D \alpha^\prime}
+\end{equation}
+This norm is convex and in some cases yields the same results of $\ell_0$-norm minimisation.
+\begin{equation}
+\min||\boldsymbol{\alpha^\prime}||_1 \quad \textrm{subject to}; \boldsymbol{x} = \boldsymbol{D \alpha^\prime}
+\end{equation}
+
+Figure \ref{fig:compressive} summarise the process to obtain a compressible signal.
+\begin{figure}[!h]
+\centering
+\includegraphics[width=\textwidth]{images/sparse.eps}
+\caption[Compressive sensing procedure]{Compressive sensing procedure \cite{compressive}}
+\label{fig:compressive}
+\end{figure}
+
+
 
 
 
