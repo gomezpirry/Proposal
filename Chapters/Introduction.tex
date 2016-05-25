@@ -14,8 +14,7 @@ Video compression standards as MPEG4, H.264, VP9, HEVC among others have an impo
 
 The main aim of video coding is to improve the coding efficiency, reducing the bit-rate for representing a video preserving a high level of quality with a maximum delay and complexity permitted. The complexity and bit-rate has been a important condition for video coding mainly in mobile applications due to processing and bandwidth limitations in the devices. Although cloud computing is a alternative for processing in devices with poor-resources, the latency is high. Fog Computing arise as a alternative, inside of cloud computing, for reducing the latency using the edge of the network for processing. \\
 
-
-This project presents a proposal for video coding through the fog network using compressive sensing to reduce the bit-rate. Dictionary learning process and sparse representation of the signal are performed in the fog network and directed toward the cloud. Dictionary and sparse vector are transferred for reconstruct the video  in the end-user side.
+This project presents a proposal for video coding through the cloud network using compressive sensing to reduce the bit-rate. Dictionary learning process and sparse representation of the signal are performed in the fog network and directed toward the cloud. Dictionary and sparse vector are transferred for reconstruct the video  in the end-user side.
 
 \section{Problem Statement}
 
@@ -48,15 +47,17 @@ Conventional Video encoders, as VP9, MPEG4 and H.26x, exploits the spatial and t
 
 \section{Objectives}
 \subsection{General Objective}
-Reduce the bit rates
+Reduce the bit rates for representing a video in high definition based compressive sensing techniques using  fog computing.
 \subsection{Specific Objectives}
 \begin{itemize}
-\item
-\item
-\item
-\item
+\item Evaluate different strategies for training learning in sparse representation based on video samples patches.
+\item Define a scheme for video coding using compressive sensing based on the dictionary trained.
+\item Design a framework for compressed video sensing based on the fog computing. 
+\item Implements the proposed design for compressed video sensing.
+\item Evaluate and compare the implemented model in terms of coding efficiency and delay using different video sequences.
 \end{itemize}
 
 \section{Project Scope}
 
+The purpose of this project is focused on reducing the bit rates in the process of video coding using compressive sensing and the fundamentals of cloud computing. Based on the video coding principles, a video coding have two main applications: the encoder and the decoder, for this reason the designed scheme will have this elements. In the project will be used in existing algorithms in the literature for training the dictionary for sparse representation, the purpose of the project is not to design a new training algorithm. In addition, the project will be focused in high definition content therefore test videos sequences should be   high definition content.
 

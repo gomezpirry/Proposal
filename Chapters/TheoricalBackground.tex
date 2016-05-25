@@ -181,7 +181,31 @@ Figure \ref{fig:compressive} summarise the process to obtain a compressible sign
 
 \subsection{Dictionaries}
 
-For sparse representation the dictionary $B$ can be a predetermined matrix but, to have a better representation, the dictionary should be trained directly from the data. 
+For sparse representation the dictionary $B$ can be a predetermined matrix but, to have a better representation, the dictionary should be trained directly from the data. Dictionary learning can be divided in three categories: supervised learning, semi-supervised learning, and unsupervised learning methods \cite{7102696}. 
+
+\subsubsection{Method of Optimal Directions (MOD)}
+
+Given a set of examples $\boldsymbol{x} = [\boldsymbol{x}_1,\boldsymbol{x}_2, \ldots \boldsymbol{x}_n]$, the goal of the MOD is to find a dictionary $\boldsymbol{D}$ and a sparse matrix $\boldsymbol{\alpha}$, which minimize the representation error
+
+\begin{equation}
+\min_{D, \alpha}||\boldsymbol{x} - \boldsymbol{D} \boldsymbol{\alpha}||_F^2 \quad \textrm{subject to} \; ||\boldsymbol{\alpha}_i||_0 \leq k, \; i= 1, 2, \ldots , N
+\label{eq:mod}
+\end{equation}
+
+where $k$ is the limit of sparsity \cite{5452966}. For the dictionary update, \ref{eq:mod} is solved via the analytic solution of the quadratic problem, given by $\boldsymbol{D} = \boldsymbol{x}\boldsymbol{\alpha}^+$ with $\boldsymbol{\alpha}^+$ denoting the Moore-Penrose pseudo-inverse \citep{Ben-Israel2003}.
+
+
+\subsubsection{K-Singular Value Decomposition (K-SVD) algorithm}
+
+The K-SVD algorithm aims at the same sparsification problem as the MOD \label{eq:mod} but the main contribution is the dictionary update. For a given atom $k$, the quadratic term in \label{eq:mod} is rewritten as
+
+\begin{equation}
+\left| \left( \boldsymbol{x} - \sum_{j \neq k} \boldsymbol{d}_j \boldsymbol{\alpha}_j^T \right) - \boldsymbol{d}_k \boldsymbol{\alpha}_k^T \right|^2_F = ||E_k - \boldsymbol{d}_k^T \boldsymbol{\alpha}_k^T||^2_F
+\label{eq:ksvd}
+\end{equation}
+
+where $\boldsymbol{\alpha}_j^T$ are the rows of $\boldsymbol{\alpha}$, and $E_k$ is the residual matrix.
+The atom update is obtained by minimizing \ref{eq:ksvd} for $\boldsymbol{d}_k$ and $\boldsymbol{\alpha}_k^T$ via a simple rank-1 approximation of $E_k$. To avoid introduction of new non-zeros in $\boldsymbol{\alpha}$, the update process is performed using only the examples whose current representations use the atom $\boldsymbol{d}_k$ \cite{5452966}.
 
 
 
