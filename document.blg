@@ -6,6 +6,7 @@ A level-1 auxiliary file: Chapters/Contents.aux
 A level-1 auxiliary file: Chapters/Introduction.aux
 A level-1 auxiliary file: Chapters/TheoricalBackground.aux
 A level-1 auxiliary file: Chapters/RelatedWork.aux
+A level-1 auxiliary file: Chapters/ProposedApproach.aux
 A level-1 auxiliary file: Chapters/Methodology.aux
 A level-1 auxiliary file: Chapters/Bibliography.aux
 The style file: ieeetr.bst
@@ -15,7 +16,7 @@ Warning--empty institution in nfv_framework
 Warning--empty author and editor in Ben-Israel2003
 You've used 24 entries,
             1876 wiz_defined-function locations,
-            626 strings with 7710 characters,
+            627 strings with 7739 characters,
 and the built_in function-call counts, 7036 in all, are:
 = -- 694
 > -- 233
